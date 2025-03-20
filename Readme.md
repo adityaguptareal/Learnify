@@ -1,298 +1,311 @@
+---
+
 # Learnify
 
-Learnify is an online course platform where users can sign up, sign in, purchase courses, and view their purchased courses. Admins can create and manage courses, while having control over the entire platform.
+Learnify is an online course platform where users can sign up, purchase courses, and manage their learning journey. Admins have complete control to manage courses and oversee platform operations.
 
-## Features
+---
 
-### User Features:
-- Sign up and sign in
-- Purchase courses
-- View purchased courses
+## 🚀 Features
 
-### Admin Features:
-- Admin authentication
-- Manage courses (create, update, delete, and view courses)
+### 👨‍🎓 User Features:
+- User Registration & Login
+- Purchase courses securely
+- View and manage purchased courses
 
-## Technologies Used
-- Express.js
-- MongoDB with Mongoose
-- JWT Authentication
-- bcrypt for password hashing
-- Zod for input validation
+### 🛠️ Admin Features:
+- Admin registration & login
+- Create, update, delete, and view courses
+- Platform-wide course management
 
-## Installation
+---
 
-Follow these steps to set up the project:
+## 🛠️ Tech Stack
 
-1. **Clone the repository:**
+- **Backend Framework:** Express.js
+- **Database:** MongoDB (Mongoose)
+- **Authentication:** JWT (JSON Web Tokens)
+- **Password Hashing:** bcrypt
+- **Validation:** Zod
+
+---
+
+## 📦 Installation & Setup
+
+1. **Clone the repository**
 
     ```bash
     git clone https://github.com/adityaguptareal/Learnify.git
     ```
 
-2. **Navigate to the project directory:**
+2. **Navigate to the project directory**
 
     ```bash
     cd Learnify
     ```
 
-3. **Install dependencies:**
+3. **Install all dependencies**
 
     ```bash
     npm install
     ```
 
-4. **Create a `.env` file and add the following variables:**
+4. **Create a `.env` file and add the following:**
 
-    ```bash
+    ```env
     MONGOODB_URL=your_mongo_db_url
     JWT_SECRET_USER=your_user_jwt_secret
-    JWT_SECRET_AMDIN=your_admin_jwt_secret
+    JWT_SECRET_ADMIN=your_admin_jwt_secret
     ```
 
-5. **Run the project:**
+5. **Run the project**
 
     ```bash
     npm start
     ```
 
-## API Endpoints
+---
 
-### User Routes
+## 🔗 API Endpoints
 
-#### 1. Sign Up
+### 📌 User Routes
 
-- **URL:** `/api/v1/user/signup`
-- **Method:** POST
-- **Request Body:**
+#### 1. **Sign Up**
 
-    ```json
-    {
-      "email": "user@example.com",
-      "password": "password123",
-      "firstName": "John",
-      "lastName": "Doe"
-    }
-    ```
+- **POST** `/api/v1/user/signup`
 
-- **Response:**
+```json
+{
+  "email": "user@example.com",
+  "password": "password123",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+```
 
-    ```json
-    {
-      "message": "user signed up successfully!"
-    }
-    ```
+- **Response**
 
-#### 2. Sign In
+```json
+{
+  "message": "user signed up successfully!"
+}
+```
 
-- **URL:** `/api/v1/user/signin`
-- **Method:** POST
-- **Request Body:**
+#### 2. **Sign In**
 
-    ```json
-    {
-      "email": "user@example.com",
-      "password": "password123"
-    }
-    ```
+- **POST** `/api/v1/user/signin`
 
-- **Response:**
+```json
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+```
 
-    ```json
-    {
-      "message": "signin successfully",
-      "idToken": "JWT_TOKEN"
-    }
-    ```
+- **Response**
 
-#### 3. Get Purchased Courses
+```json
+{
+  "message": "signin successfully",
+  "idToken": "JWT_TOKEN"
+}
+```
 
-- **URL:** `/api/v1/user/purchases`
-- **Method:** GET
-- **Headers:** `token: JWT_TOKEN`
-- **Response:**
+#### 3. **Get Purchased Courses**
 
-    ```json
-    {
-      "purchases": [...],
-      "course": [...]
-    }
-    ```
+- **GET** `/api/v1/user/purchases`
 
-### Course Routes
+**Headers:** `token: JWT_TOKEN`
 
-#### 1. Purchase Course
+- **Response**
 
-- **URL:** `/api/v1/courses/purchase`
-- **Method:** POST
-- **Request Body:**
+```json
+{
+  "purchases": [...],
+  "course": [...]
+}
+```
 
-    ```json
-    {
-      "courseId": "COURSE_ID"
-    }
-    ```
+---
 
-- **Headers:** `token: JWT_TOKEN`
-- **Response:**
+### 📌 Course Routes
 
-    ```json
-    {
-      "message": "course purchased",
-      "status": "purchased"
-    }
-    ```
+#### 1. **Purchase Course**
 
-#### 2. Get All Courses
+- **POST** `/api/v1/courses/purchase`
 
-- **URL:** `/api/v1/courses/preview`
-- **Method:** GET
-- **Response:**
+```json
+{
+  "courseId": "COURSE_ID"
+}
+```
 
-    ```json
-    {
-      "message": "All Courses List",
-      "courses": [...]
-    }
-    ```
+**Headers:** `token: JWT_TOKEN`
 
-### Admin Routes
+- **Response**
 
-#### 1. Admin Sign Up
+```json
+{
+  "message": "course purchased",
+  "status": "purchased"
+}
+```
 
-- **URL:** `/api/v1/admin/signup`
-- **Method:** POST
-- **Request Body:**
+#### 2. **Get All Courses**
 
-    ```json
-    {
-      "email": "admin@example.com",
-      "password": "admin123",
-      "firstName": "Admin",
-      "lastName": "User"
-    }
-    ```
+- **GET** `/api/v1/courses/preview`
 
-- **Response:**
+- **Response**
 
-    ```json
-    {
-      "message": "user signed up successfully!"
-    }
-    ```
+```json
+{
+  "message": "All Courses List",
+  "courses": [...]
+}
+```
 
-#### 2. Admin Sign In
+---
 
-- **URL:** `/api/v1/admin/signin`
-- **Method:** POST
-- **Request Body:**
+### 📌 Admin Routes
 
-    ```json
-    {
-      "email": "admin@example.com",
-      "password": "admin123"
-    }
-    ```
+#### 1. **Admin Sign Up**
 
-- **Response:**
+- **POST** `/api/v1/admin/signup`
 
-    ```json
-    {
-      "message": "signin successfully",
-      "idToken": "JWT_TOKEN"
-    }
-    ```
+```json
+{
+  "email": "admin@example.com",
+  "password": "admin123",
+  "firstName": "Admin",
+  "lastName": "User"
+}
+```
 
-#### 3. Create Course
+- **Response**
 
-- **URL:** `/api/v1/admin/course`
-- **Method:** POST
-- **Headers:** `token: JWT_TOKEN`
-- **Request Body:**
+```json
+{
+  "message": "user signed up successfully!"
+}
+```
 
-    ```json
-    {
-      "title": "Course Title",
-      "description": "Course Description",
-      "imageUrl": "Course Image URL",
-      "price": "Price"
-    }
-    ```
+#### 2. **Admin Sign In**
 
-- **Response:**
+- **POST** `/api/v1/admin/signin`
 
-    ```json
-    {
-      "message": "course created",
-      "courseID": "COURSE_ID"
-    }
-    ```
+```json
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+```
 
-#### 4. Update Course
+- **Response**
 
-- **URL:** `/api/v1/admin/course`
-- **Method:** PUT
-- **Headers:** `token: JWT_TOKEN`
-- **Request Body:**
+```json
+{
+  "message": "signin successfully",
+  "idToken": "JWT_TOKEN"
+}
+```
 
-    ```json
-    {
-      "courseID": "COURSE_ID",
-      "title": "Updated Course Title",
-      "description": "Updated Description",
-      "imageUrl": "Updated Image URL",
-      "price": "Updated Price"
-    }
-    ```
+#### 3. **Create Course**
 
-- **Response:**
+- **POST** `/api/v1/admin/course`
 
-    ```json
-    {
-      "message": "COURSE_ID Course Updated"
-    }
-    ```
+**Headers:** `token: JWT_TOKEN`
 
-#### 5. Get All Courses (Admin)
+```json
+{
+  "title": "Course Title",
+  "description": "Course Description",
+  "imageUrl": "Course Image URL",
+  "price": "Price"
+}
+```
 
-- **URL:** `/api/v1/admin/course/bulk`
-- **Method:** GET
-- **Headers:** `token: JWT_TOKEN`
-- **Response:**
+- **Response**
 
-    ```json
-    {
-      "message": "Your Courses",
-      "courses": [...]
-    }
-    ```
+```json
+{
+  "message": "course created",
+  "courseID": "COURSE_ID"
+}
+```
 
-#### 6. Delete Course
+#### 4. **Update Course**
 
-- **URL:** `/api/v1/admin/course/delete`
-- **Method:** DELETE
-- **Headers:** `token: JWT_TOKEN`
-- **Request Body:**
+- **PUT** `/api/v1/admin/course`
 
-    ```json
-    {
-      "courseID": "COURSE_ID"
-    }
-    ```
+**Headers:** `token: JWT_TOKEN`
 
-- **Response:**
+```json
+{
+  "courseID": "COURSE_ID",
+  "title": "Updated Course Title",
+  "description": "Updated Description",
+  "imageUrl": "Updated Image URL",
+  "price": "Updated Price"
+}
+```
 
-    ```json
-    {
-      "message": "Course is Deleted"
-    }
-    ```
+- **Response**
 
-## Authentication Middleware
+```json
+{
+  "message": "COURSE_ID Course Updated"
+}
+```
 
-- **User Middleware:** Protects routes that require user authentication (e.g., viewing purchased courses).
-- **Admin Middleware:** Protects routes that require admin authentication (e.g., creating, updating, and deleting courses).
+#### 5. **Get All Courses (Admin)**
 
+- **GET** `/api/v1/admin/course/bulk`
 
+**Headers:** `token: JWT_TOKEN`
 
+- **Response**
 
+```json
+{
+  "message": "Your Courses",
+  "courses": [...]
+}
+```
+
+#### 6. **Delete Course**
+
+- **DELETE** `/api/v1/admin/course/delete`
+
+**Headers:** `token: JWT_TOKEN`
+
+```json
+{
+  "courseID": "COURSE_ID"
+}
+```
+
+- **Response**
+
+```json
+{
+  "message": "Course is Deleted"
+}
+```
+
+---
+
+## 🔐 Authentication Middleware
+
+- **User Middleware:** Protects user-specific routes (e.g., course purchases and viewing purchases)
+- **Admin Middleware:** Protects admin-specific routes (e.g., creating, updating, and deleting courses)
+
+---
+
+## 🎯 Notes
+
+- Ensure to replace placeholders like `your_mongo_db_url` and `JWT_TOKEN` with your actual values.
+- Make sure MongoDB is running before starting the project.
+
+---
+
+Would you like me to also suggest badges (e.g., License, Build Status) or a contributing section for this README? 🚀
