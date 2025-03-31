@@ -3,6 +3,8 @@ const Schema=mongoose.Schema
 const objectId=mongoose.Types.ObjectId
 
 
+// defining schemas
+
 const userSchema= new Schema({
     "email":{type:String, unique:true},
     "password":String,
